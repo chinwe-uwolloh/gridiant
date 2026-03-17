@@ -16,7 +16,7 @@ export default {
         slateAsh: "var(--color-slateAsh)"
       },
       fontFamily: {
-        display: ["'Playfair Display'", "serif"],
+        display: ["'Sora'", "sans-serif"],
         body: ["'Inter'", "sans-serif"],
         mono: ["'JetBrains Mono'", "monospace"]
       }

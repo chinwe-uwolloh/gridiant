@@ -1,7 +1,6 @@
-import { CommandShell } from "@/components/layout/CommandShell";
-import { TopCommandBar } from "@/components/navigation/TopCommandBar";
+import { AppShell } from "@/components/layout/AppShell";
 import { TimelineWall } from "@/components/schedule/TimelineWall";
 
 export default function ScheduleStudioPage() {
-  return <CommandShell><TopCommandBar /><TimelineWall /></CommandShell>;
+  return <AppShell title="Schedule" subtitle="Smart automation windows for the next 24 hours."><TimelineWall /></AppShell>;
 }

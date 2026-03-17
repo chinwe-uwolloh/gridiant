@@ -1,7 +1,6 @@
-import { CommandShell } from "@/components/layout/CommandShell";
-import { TopCommandBar } from "@/components/navigation/TopCommandBar";
+import { AppShell } from "@/components/layout/AppShell";
 import { QuantumPanel } from "@/components/quantum/QuantumPanel";
 
 export default function QuantumStudioPage() {
-  return <CommandShell><TopCommandBar /><QuantumPanel /></CommandShell>;
+  return <AppShell title="Optimization Engine" subtitle="Deeper model insight and advanced optimization transparency."><QuantumPanel /></AppShell>;
 }

@@ -10,12 +10,27 @@ export function PriceContourChart({ data }: { data: number[] }) {
     const svg = d3.select(ref.current);
     svg.selectAll("*").remove();
     const w = 640;
-    const h = 180;
-    const x = d3.scaleLinear().domain([0, data.length - 1]).range([20, w - 20]);
-    const y = d3.scaleLinear().domain([0, d3.max(data) ?? 1]).range([h - 20, 20]);
+    const h = 220;
+    const x = d3.scaleLinear().domain([0, data.length - 1]).range([18, w - 18]);
+    const y = d3.scaleLinear().domain([0, d3.max(data) ?? 1]).range([h - 26, 22]);
     const line = d3.line<number>().x((_, i) => x(i)).y((d) => y(d)).curve(d3.curveCatmullRom.alpha(0.5));
-    svg.append("path").attr("d", line(data) ?? "").attr("fill", "none").attr("stroke", "#d88938").attr("stroke-width", 2.2);
-    svg.append("g").attr("transform", `translate(0,${h - 20})`).call(d3.axisBottom(x).ticks(8).tickSizeOuter(0));
+    const area = d3
+      .area<number>()
+      .x((_, i) => x(i))
+      .y0(h - 22)
+      .y1((d) => y(d))
+      .curve(d3.curveCatmullRom.alpha(0.5));
+
+    const defs = svg.append("defs");
+    const grad = defs.append("linearGradient").attr("id", "lineGrad").attr("x1", "0%").attr("y1", "0%").attr("x2", "100%").attr("y2", "0%");
+    grad.append("stop").attr("offset", "0%").attr("stop-color", "#9fd4ff");
+    grad.append("stop").attr("offset", "100%").attr("stop-color", "#7bf1c7");
+    const fill = defs.append("linearGradient").attr("id", "areaGrad").attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+    fill.append("stop").attr("offset", "0%").attr("stop-color", "rgba(140,215,255,0.35)");
+    fill.append("stop").attr("offset", "100%").attr("stop-color", "rgba(140,215,255,0)");
+
+    svg.append("path").attr("d", area(data) ?? "").attr("fill", "url(#areaGrad)");
+    svg.append("path").attr("d", line(data) ?? "").attr("fill", "none").attr("stroke", "url(#lineGrad)").attr("stroke-width", 2.4);
   }, [data]);
-  return <svg ref={ref} viewBox="0 0 640 180" className="h-[180px] w-full" />;
+  return <svg ref={ref} viewBox="0 0 640 220" className="h-[220px] w-full" />;
 }

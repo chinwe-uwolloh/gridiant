@@ -5,13 +5,17 @@ const curve = [0.24, 0.21, 0.19, 0.22, 0.27, 0.35, 0.41, 0.46, 0.44, 0.38, 0.34,
 
 export function TimelineWall() {
   return (
-    <SectionFrame title="Schedule Studio / 24h Orchestration">
+    <SectionFrame title="Tomorrow's smart plan">
       <PriceContourChart data={curve} />
+      <div className="mt-3 flex items-center justify-between text-xs">
+        <span className="font-mono uppercase tracking-[0.14em] text-slateAsh">Optimization running in background</span>
+        <span className="text-emberAccent">Projected daily savings: 23.4%</span>
+      </div>
       <div className="mt-4 grid grid-cols-1 gap-3 text-xs md:grid-cols-4">
-        <div className="border border-white/15 p-3">Battery Charge/Discharge Bands</div>
-        <div className="border border-white/15 p-3">EV Session Blocks</div>
-        <div className="border border-white/15 p-3">Appliance Lanes</div>
-        <div className="border border-white/15 p-3">Comfort Markers</div>
+        <div className="border border-white/15 rounded-xl p-3">Battery charging is scheduled for lower-cost hours</div>
+        <div className="border border-white/15 rounded-xl p-3">EV charging is set to finish before your deadline</div>
+        <div className="border border-white/15 rounded-xl p-3">High-load appliances are spread to avoid peak spikes</div>
+        <div className="border border-white/15 rounded-xl p-3">Comfort stays in your preferred temperature range</div>
       </div>
     </SectionFrame>
   );
